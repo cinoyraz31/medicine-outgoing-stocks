@@ -25,14 +25,14 @@ $ docker-compose up -d #create container
 
 Composer Install
 ```
-docker exec -it wallet-stack-test composer install
-docker exec -it wallet-stack-test php artisan key:generate
+docker exec -it medicine-outgoing-stocks composer install
+docker exec -it medicine-outgoing-stocks php artisan key:generate
 ```
 
 DB Migration
 ```
-docker exec -it wallet-stack-test php artisan migrate
-docker exec -it wallet-stack-test php artisan db:seed
+docker exec -it medicine-outgoing-stocks php artisan migrate
+docker exec -it medicine-outgoing-stocks php artisan db:seed
 ```
 
 Running Application
