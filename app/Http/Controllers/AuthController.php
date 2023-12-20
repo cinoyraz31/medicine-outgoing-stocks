@@ -15,10 +15,9 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login']]);
     }
 
-    public function login(Request $request)
+    public function login(Request $request, ApiResponse $apiResponse)
     {
         $service = new BaseService($request->all());
-        $apiResponse = new ApiResponse();
         $service->rules = [
             'email' => 'required|email|max:250',
             'password' => 'required|min:8'
@@ -43,10 +42,9 @@ class AuthController extends Controller
         return $apiResponse->data($this->respondWithToken($token))->success();
     }
 
-    public function logout()
+    public function logout(ApiResponse $apiResponse)
     {
         auth()->logout();
-        $apiResponse = new ApiResponse();
         return $apiResponse->message('Successfully logged out')->success();
     }
 
@@ -64,7 +62,7 @@ class AuthController extends Controller
         if ($service->isError()) {
             return $apiResponse->error($service->errorMessage)->clientError($service->httpCode);
         }
-        return $apiResponse->success();
+        return $apiResponse->message('Successfully save access permission user')->success();
     }
 
     protected function respondWithToken($token)

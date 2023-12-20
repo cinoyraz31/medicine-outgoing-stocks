@@ -57,15 +57,13 @@ class MedicineController extends Controller
         return $apiResponse->meta(["message" => "Success create medicine"])->success();
     }
 
-    public function incoming(Request $request)
+    public function incoming(Request $request, ApiResponse $apiResponse)
     {
         if(! $this->checkACL("medicine-incoming-create")){
             return $apiResponse->error("Forbidden")->clientError(403);
         }
 
         $service = new IncomeStoreService($request->all());
-        $apiResponse = new ApiResponse();
-
         $service->run();
         if ($service->isError()) {
             return $apiResponse->error($service->errorMessage)->clientError($service->httpCode);
@@ -74,15 +72,13 @@ class MedicineController extends Controller
         return $apiResponse->meta(["message" => "Success added medicine stock income"])->success();
     }
 
-    public function outgoing(Request $request)
+    public function outgoing(Request $request, ApiResponse $apiResponse)
     {
         if(! $this->checkACL("medicine-outgoing-create")){
             return $apiResponse->error("Forbidden")->clientError(403);
         }
 
         $service = new OutgoingStoreService($request->all());
-        $apiResponse = new ApiResponse();
-
         $service->run();
         if ($service->isError()) {
             return $apiResponse->error($service->errorMessage)->clientError($service->httpCode);
