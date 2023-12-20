@@ -47,3 +47,7 @@ Responses -> content.json.php trying to equalize the standard mvc rules
 Controller -> Only call service and render response
 Services -> The service insipartion from https://github.com/AaronLasseigne/active_interaction
 ```
+
+Design Flow Diagram
+
+<img src="https://drive.google.com/uc?id=1GT1ipNlW1yJU7j6qWWwU-RbLptuprdUV">

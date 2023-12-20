@@ -13,7 +13,7 @@ services:
             - .:/home/source/main
     db:
         image: mysql
-        container_name: mysq
+        container_name: mysql
         volumes:
             - ./mysql/data:/var/lib/mysql
         ports:
